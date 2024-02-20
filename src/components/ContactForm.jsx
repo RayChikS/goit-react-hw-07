@@ -1,4 +1,4 @@
-import { Formik, Form, Field } from 'formik';
+import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { useId } from 'react';
 import { nanoid } from 'nanoid';
 import css from './ContactForm.module.css';
@@ -11,10 +11,14 @@ const FeedbackSchema = Yup.object().shape({
     .min(3, 'Too Short!')
     .max(50, 'Too Long!')
     .required('Required'),
+  phone: Yup.string()
+    .min(3, 'Too Short!')
+    .max(50, 'Too Long!')
+    .required('Required'),
 });
 
 const initialValues = {
-  text: '',
+  username: '',
   phone: '',
 };
 
@@ -42,6 +46,7 @@ export default function ContactForm() {
     >
       <Form className={css.form}>
         <label htmlFor={userNameId}>Name</label>
+        <ErrorMessage name="username" component="span" className={css.error} />
         <Field
           className={css.field}
           type="text"
@@ -50,6 +55,7 @@ export default function ContactForm() {
         />
 
         <label htmlFor={numberId}>Number</label>
+        <ErrorMessage name="phone" component="span" className={css.error} />
         <Field className={css.field} type="phone" name="phone" id={numberId} />
 
         <button type="submit">Add contact</button>
