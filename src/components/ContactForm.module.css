@@ -1,0 +1,12 @@
+.form {
+  max-width: 300px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid black;
+  border-radius: 7px;
+  margin-bottom: 30px;
+}
+.field {
+  margin-bottom: 20px;
+}
